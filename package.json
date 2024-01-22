@@ -1,0 +1,23 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+ 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.send('Welcome to the Express app!');
+});
+ 
+// Hello endpoint
+app.get('/hello', (req, res) => {
+  res.send('Hello, World!');
+});
+ 
+// JSON endpoint
+app.get('/json', (req, res) => {
+  res.json({ message: 'This is a JSON response', status: 'success' });
+});
+ 
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
