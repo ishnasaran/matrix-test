@@ -1,0 +1,22 @@
+name: Complex Build Matrix
+ 
+on: push
+ 
+jobs:
+  michael-job:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest,windows-latest]
+        nodejs: [16.x,17.x,18.x,19.x,20.x]
+    steps:
+      - uses : actions/checkout@v4
+      - name: Michael Builds Node.js ${{ matrix.nodejs }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.nodejs}}
+      - name: Install dependencies
+        run:  npm install
+      - name: Run tests
+        run: npm test
